@@ -5,9 +5,9 @@ async function page() {
 
   const user = await currentUser();
 
-  const userInfo = {}
+  const userInfo:any = {}
 
-  const userData = {
+  const userData:any = {
     id: user?.id,
     objectId: userInfo?._id,
     username: userInfo?.name || user?.username,
