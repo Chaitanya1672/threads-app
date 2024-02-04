@@ -15,10 +15,8 @@ const ProfileDetailsPage = async({params}: {params: {id: string}}) => {
   if(!user) return null
   
   const userInfo = await fetchUser(params.id)
-  console.log("userInfo",userInfo)
   
   if(!userInfo?.onboarded) redirect('/onboarding')
-  
   return (
     <section>
       <ProfileHeader
@@ -52,6 +50,7 @@ const ProfileDetailsPage = async({params}: {params: {id: string}}) => {
                 }
               </TabsTrigger>
             ))}
+          </TabsList>
             {
               profileTabs.map((tab)=>(
                 <TabsContent key={`content-${tab.label}`} value={tab.value}
@@ -66,7 +65,6 @@ const ProfileDetailsPage = async({params}: {params: {id: string}}) => {
                 </TabsContent>  
               ))
             }
-          </TabsList>
         </Tabs>
       </div>
     </section>

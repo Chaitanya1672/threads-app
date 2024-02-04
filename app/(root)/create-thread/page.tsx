@@ -10,10 +10,10 @@ const CreateThread = async () => {
   if(!user) return null
   
   const userInfo = await fetchUser(user.id)
-  console.log("userInfo",userInfo)
   
-  if(!userInfo?.onboarded) redirect('/onboarding')
-  
+  if(!userInfo?.onboarded) {
+    return redirect('/onboarding')
+  }
   return (
     <>
       <h1 className='head-text'>Create thread</h1>
