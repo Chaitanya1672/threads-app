@@ -14,7 +14,6 @@ type Community = {
 } | null
 
 interface ThreadCardProps {
-  key: string,
   id: string,
   currentUserId: string,
   parentId: string | null,
@@ -31,7 +30,6 @@ interface ThreadCardProps {
 }
 
 const ThreadCard = ({
-    key,
     id,
     currentUserId,
     parentId,
