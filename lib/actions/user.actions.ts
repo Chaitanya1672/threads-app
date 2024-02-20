@@ -131,8 +131,6 @@ export const getActivity  = async(userId: string) =>{
     const childThreads = userThreads.reduce((acc, userThread)=>{
       return acc.concat(userThread.children)
     }, [])
-    console.log('childThreads', childThreads)
-    console.log('user', user)
     
     const replies = await Thread.find({
       _id: {$in: childThreads},
@@ -143,7 +141,6 @@ export const getActivity  = async(userId: string) =>{
       select: 'name image id'
     })
     
-    console.log('replies', replies)
     return replies
   } catch (error:any) {
     throw new Error(`Failed to fetch activity: ${error.message}`)
