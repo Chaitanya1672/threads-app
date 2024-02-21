@@ -19,6 +19,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { ThreadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.actions";
+import { useOrganization } from "@clerk/nextjs";
 
 // import { updateUser } from "@/lib/actions/user.actions";
 // import { UserValidation } from "@/lib/validations/user";
@@ -39,6 +40,7 @@ const PostThread = ({userId}: {userId:string}) => {
   const router = useRouter()
   const [files, setFiles] = useState<File[]>([])
   // const user:any = currentUser()
+  const { organization }:any = useOrganization()
   const form  = useForm({
     resolver: zodResolver(ThreadValidation),
     defaultValues: {
@@ -48,7 +50,12 @@ const PostThread = ({userId}: {userId:string}) => {
   })
   
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) =>{
-    await createThread({text: values.thread,  author: userId,  communityId:'', path: pathName})
+    await createThread({
+      text: values.thread,
+      author: userId,
+      communityId: organization ? organization.id : null, 
+      path: pathName
+    })
     router.push('/')
   }
 

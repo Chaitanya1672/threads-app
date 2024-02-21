@@ -12,7 +12,7 @@ const SearchPage = async() => {
   
   const result = await fetchUsers({
     userId: user?.id,
-    searchTerm: '',
+    searchString: '',
     pageNumber: 1,
     pageSize: 20,
     // sortBy: 'name',
@@ -28,7 +28,7 @@ const SearchPage = async() => {
             <p className=''>No users found</p>
           ) : (
             <>
-              {result.users.map((person)=>(
+              {result.users.map((person:any)=>(
                 <UserCard 
                   key={person.id}
                   id={person.id}
