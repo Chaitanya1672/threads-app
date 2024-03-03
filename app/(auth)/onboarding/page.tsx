@@ -8,7 +8,7 @@ async function page() {
   const user:any = await currentUser();
   const userInfo:any = await fetchUser(user.id)
   
-  if(userInfo.onboarded) redirect('/')
+  if(userInfo?.onboarded) redirect('/')
 
   const userData:any = {
     id: user?.id,
