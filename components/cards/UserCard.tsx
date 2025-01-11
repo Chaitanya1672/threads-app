@@ -23,7 +23,7 @@ const UserCard = ({
     <article className="user-card">
       <div className="user-card_avatar">
         <Image
-          src={imgUrl}
+          src={imgUrl || '/assets/logo.svg'}
           alt="logo"
           width={48}
           height={48}

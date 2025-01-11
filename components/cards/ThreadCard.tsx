@@ -31,15 +31,15 @@ interface ThreadCardProps {
 }
 
 const ThreadCard = ({
-    id,
-    currentUserId,
-    parentId,
-    content,
-    author,
-    community,
-    createdAt,
-    comments,
-    isComment
+  id,
+  currentUserId,
+  parentId,
+  content,
+  author,
+  community,
+  createdAt,
+  comments,
+  isComment
 }:ThreadCardProps) => {
   return (
     <article
@@ -50,9 +50,9 @@ const ThreadCard = ({
       <div className='flex items-start justify-between'>
         <div className='flex w-full flex-1 flex-row gap-4'>
           <div className='flex flex-col items-center'>
-            <Link href={`/profile/${author.id}`} className='relative h-11 w-11'>
+            <Link href={`/profile/${author?.id}`} className='relative h-11 w-11'>
               <Image
-                src={author.image}
+                src={author?.image || "/assets/user.svg"}
                 alt='user_community_image'
                 fill
                 className='cursor-pointer rounded-full'
@@ -63,9 +63,9 @@ const ThreadCard = ({
           </div>
 
           <div className='flex w-full flex-col'>
-            <Link href={`/profile/${author.id}`} className='w-fit'>
+            <Link href={`/profile/${author?.id}`} className='w-fit'>
               <h4 className='cursor-pointer text-base-semibold text-light-1'>
-                {author.name}
+                {author?.name}
               </h4>
             </Link>
 
@@ -130,7 +130,7 @@ const ThreadCard = ({
           {comments.slice(0, 2).map((comment, index) => (
             <Image
               key={index}
-              src={comment.author.image}
+              src={comment.author?.image || "/assets/user.svg"}
               alt={`user_${index}`}
               width={24}
               height={24}
@@ -157,7 +157,7 @@ const ThreadCard = ({
           </p>
 
           <Image
-            src={community.image}
+            src={community?.image || "/assets/user.svg"}
             alt={community.name}
             width={14}
             height={14}
